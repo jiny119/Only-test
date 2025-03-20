@@ -1,0 +1,38 @@
+#menu-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
