@@ -1,62 +1,27 @@
-let users = [];
-let currentUser = null;
-let coins = 0;
+let tasks = [
+    { name: "Watch an Ad", type: "ads", reward: 5 },
+    { name: "Install an App", type: "install", reward: 10 },
+    { name: "Complete a Survey", type: "survey", reward: 15 },
+    { name: "Play a Game", type: "gaming", reward: 20 }
+];
 
-// Signup Function
-function signup() {
-    let username = document.getElementById("signupUser").value;
-    let password = document.getElementById("signupPass").value;
-
-    if (username && password) {
-        users.push({ username, password, coins: 0 });
-        alert("Signup Successful! Now Login.");
-    } else {
-        alert("Please enter a valid username and password.");
-    }
+function showTasks() {
+    let taskContainer = document.getElementById("task-list");
+    taskContainer.innerHTML = "";
+    tasks.forEach((task, index) => {
+        taskContainer.innerHTML += `
+            <li>${task.name} - Reward: ${task.reward} Coins 
+                <button onclick="completeTask(${index})">Complete</button>
+            </li>`;
+    });
 }
 
-// Login Function
-function login() {
-    let username = document.getElementById("loginUser").value;
-    let password = document.getElementById("loginPass").value;
-
-    let userFound = users.find(user => user.username === username && user.password === password);
-
-    if (userFound) {
-        currentUser = userFound;
-        coins = userFound.coins;
-        document.getElementById("userName").innerText = username;
-        document.getElementById("coins").innerText = coins;
-
-        document.getElementById("auth").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-    } else {
-        alert("Invalid Username or Password!");
-    }
+function completeTask(index) {
+    let coins = parseInt(localStorage.getItem("coins")) || 0;
+    coins += tasks[index].reward;
+    localStorage.setItem("coins", coins);
+    document.getElementById("coin-count").innerText = `Coins: ${coins}`;
+    alert(`${tasks[index].name} Completed! You earned ${tasks[index].reward} Coins.`);
 }
 
-// Complete Task (Earn 5 Coins)
-function completeTask() {
-    if (currentUser) {
-        coins += 5;
-        currentUser.coins = coins;
-        document.getElementById("coins").innerText = coins;
-    }
-}
-
-// Withdraw Coins
-function withdraw() {
-    if (coins >= 15000) {
-        alert("Withdrawal Successful! You have redeemed 15000 coins.");
-        coins -= 15000;
-        currentUser.coins = coins;
-        document.getElementById("coins").innerText = coins;
-    } else {
-        alert("You need at least 15000 coins to withdraw.");
-    }
-}
-
-// Share & Earn (Dummy)
-function share() {
-    alert("Shared Successfully! Keep earning.");
-}
+document.addEventListener("DOMContentLoaded", showTasks);
