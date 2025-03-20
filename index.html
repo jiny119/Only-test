@@ -3,30 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyTaskVita</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MyTaskVita - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .task-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .task-btn:hover {
+            background: #45a049;
+        }
+        .info {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #bbb;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="dashboard">
+    <div class="container">
         <h1>MyTaskVita</h1>
         <h2>Dashboard</h2>
-        <p>Welcome, AmnaKhan</p>
-        <p id="coin-count">Coins: 0</p>
+        <p>Welcome, User</p>
+        <p>Coins: <span id="coins">0</span></p>
+        <p>Tasks Left Today: <span id="tasksLeft">10</span></p>
 
-        <button id="complete-task">Complete Task (+5 Coins)</button>
-        <button id="withdraw">Withdraw</button>
-        <button id="share">Share & Earn</button>
+        <button class="task-btn" onclick="playGame()">🎮 Play a Game - Earn 5 Coins</button>
+        <button class="task-btn" onclick="startSurvey()">📋 Complete a Survey - Earn 5 Coins</button>
+        <button class="task-btn" onclick="watchAd()">📺 Watch an Ad - Earn 5 Coins</button>
 
-        <h3>Available Tasks</h3>
-        <ul id="task-list">
-            <li>Watch an Ad</li>
-            <li>Install an App</li>
-            <li>Complete a Survey</li>
-            <li>Play a Game</li>
-        </ul>
+        <p class="info">You can complete only 10 tasks every 24 hours.</p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let coins = localStorage.getItem("coins") ? parseInt(localStorage.getItem("coins")) : 0;
+        let tasksLeft = localStorage.getItem("tasksLeft") ? parseInt(localStorage.getItem("tasksLeft")) : 10;
+        let lastReset = localStorage.getItem("lastReset") ? parseInt(localStorage.getItem("lastReset")) : 0;
+
+        function updateUI() {
+            document.getElementById("coins").innerText = coins;
+            document.getElementById("tasksLeft").innerText = tasksLeft;
+        }
+
+        function resetTasks() {
+            let now = Date.now();
+            if (now - lastReset > 86400000) { // 24 hours in milliseconds
+                tasksLeft = 10;
+                lastReset = now;
+                localStorage.setItem("tasksLeft", tasksLeft);
+                localStorage.setItem("lastReset", lastReset);
+            }
+        }
+
+        function completeTask() {
+            resetTasks();
+            if (tasksLeft > 0) {
+                coins += 5;
+                tasksLeft -= 1;
+                localStorage.setItem("coins", coins);
+                localStorage.setItem("tasksLeft", tasksLeft);
+                alert("Task Completed! You earned 5 coins.");
+            } else {
+                alert("You have completed all tasks for today! Try again after 24 hours.");
+            }
+            updateUI();
+        }
+
+        function playGame() {
+            let games = ["https://poki.com/en/g/3d-bottle-shooter", "https://poki.com/en/g/crazy-cars", "https://poki.com/en/g/temple-run"];
+            let randomGame = games[Math.floor(Math.random() * games.length)];
+            window.open(randomGame, "_blank");
+            completeTask();
+        }
+
+        function startSurvey() {
+            let surveys = ["https://www.surveyjunkie.com/", "https://www.swagbucks.com/", "https://www.opinionoutpost.com/"];
+            let randomSurvey = surveys[Math.floor(Math.random() * surveys.length)];
+            window.open(randomSurvey, "_blank");
+            completeTask();
+        }
+
+        function watchAd() {
+            alert("Ad Playing... Please wait.");
+            setTimeout(function() {
+                alert("Ad Completed! You earned 5 coins.");
+                completeTask();
+            }, 5000);
+        }
+
+        resetTasks();
+        updateUI();
+    </script>
+
 </body>
 </html>
