@@ -7,32 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
+
+    <div class="dashboard">
         <h1>MyTaskVita</h1>
-        
-        <div id="auth">
-            <h2>Sign Up</h2>
-            <input type="text" id="signupUser" placeholder="Enter Username">
-            <input type="password" id="signupPass" placeholder="Enter Password">
-            <button onclick="signup()">Sign Up</button>
+        <h2>Dashboard</h2>
+        <p>Welcome, AmnaKhan</p>
+        <p id="coin-count">Coins: 0</p>
 
-            <h2>Login</h2>
-            <input type="text" id="loginUser" placeholder="Enter Username">
-            <input type="password" id="loginPass" placeholder="Enter Password">
-            <button onclick="login()">Login</button>
-        </div>
+        <button id="complete-task">Complete Task (+5 Coins)</button>
+        <button id="withdraw">Withdraw</button>
+        <button id="share">Share & Earn</button>
 
-        <div id="dashboard" style="display: none;">
-            <h2>Dashboard</h2>
-            <p>Welcome, <span id="userName"></span></p>
-            <p>Coins: <span id="coins">0</span></p>
-            
-            <button onclick="completeTask()">Complete Task (+5 Coins)</button>
-            <button onclick="withdraw()">Withdraw</button>
-            <button onclick="share()">Share & Earn</button>
-
-            <p id="message"></p>
-        </div>
+        <h3>Available Tasks</h3>
+        <ul id="task-list">
+            <li>Watch an Ad</li>
+            <li>Install an App</li>
+            <li>Complete a Survey</li>
+            <li>Play a Game</li>
+        </ul>
     </div>
 
     <script src="script.js"></script>
