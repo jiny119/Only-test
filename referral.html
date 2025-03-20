@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral - MyTaskVita</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Invite Friends & Earn Coins</h2>
+    <p>Share this referral link:</p>
+    
+    <input type="text" id="referral-link" value="https://mytaskvita.com?ref=USERID" readonly>
+    <button onclick="copyReferral()">Copy Link</button>
+
+    <script>
+        function copyReferral() {
+            let copyText = document.getElementById("referral-link");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Referral Link Copied!");
+        }
+    </script>
+</body>
+</html>
