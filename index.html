@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTaskVita</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>MyTaskVita</h1>
+        
+        <div id="auth">
+            <h2>Sign Up</h2>
+            <input type="text" id="signupUser" placeholder="Enter Username">
+            <input type="password" id="signupPass" placeholder="Enter Password">
+            <button onclick="signup()">Sign Up</button>
+
+            <h2>Login</h2>
+            <input type="text" id="loginUser" placeholder="Enter Username">
+            <input type="password" id="loginPass" placeholder="Enter Password">
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="dashboard" style="display: none;">
+            <h2>Dashboard</h2>
+            <p>Welcome, <span id="userName"></span></p>
+            <p>Coins: <span id="coins">0</span></p>
+            
+            <button onclick="completeTask()">Complete Task (+5 Coins)</button>
+            <button onclick="withdraw()">Withdraw</button>
+            <button onclick="share()">Share & Earn</button>
+
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
