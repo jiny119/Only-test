@@ -1,0 +1,11 @@
+<button id="menu-toggle">☰</button>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="withdrawal.html">💰 Withdrawal</a></li>
+        <li><a href="referral.html">🔗 Referral</a></li>
+        <li><a href="settings.html">🔊 Sound Settings</a></li>
+        <li><a href="#" onclick="logoutUser()">🚪 Logout</a></li>
+    </ul>
+</div>
