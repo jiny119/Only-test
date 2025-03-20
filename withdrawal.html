@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal - MyTaskVita</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Withdraw Your Coins</h2>
+    
+    <label for="method">Select Method:</label>
+    <select id="method">
+        <option value="jazzcash">JazzCash</option>
+        <option value="easypaisa">EasyPaisa</option>
+        <option value="payoneer">Payoneer</option>
+        <option value="paypal">PayPal</option>
+    </select>
+    
+    <input type="text" id="account" placeholder="Enter Account Number">
+    <button onclick="withdrawCoins()">Withdraw</button>
+
+    <script>
+        function withdrawCoins() {
+            let method = document.getElementById("method").value;
+            let account = document.getElementById("account").value;
+            alert("Withdrawal requested via " + method + " to " + account);
+        }
+    </script>
+</body>
+</html>
